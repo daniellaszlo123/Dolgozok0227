@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import modell.Ember;
 
 /**
@@ -25,8 +26,9 @@ public class DolgozokForm extends javax.swing.JFrame {
     
     public DolgozokForm() throws IOException {
         this.emberek = beolvas();
-        
         initComponents();
+        lanyokCbFeltolt();
+        fiukCbFeltolt();
     }
     
     private ArrayList<Ember> beolvas() throws IOException{
@@ -91,11 +93,25 @@ public class DolgozokForm extends javax.swing.JFrame {
     private void lanyokCbFeltolt(){
         for (Ember ember : emberek) {
             if (ember.getNem().equals(Ember.LANY_NEM)) {
-                
+                cbLanyok.addItem(ember.getNev());
             }
         }
+        cbLanyok.setSelectedIndex(-1);
     }
-
+    
+    private void fiukCbFeltolt(){
+        for (Ember ember : emberek) {
+            if (ember.getNem().equals(Ember.FIU_NEM)) {
+                cbFiuk.addItem(ember.getNev());
+            }
+        }
+        cbFiuk.setSelectedIndex(-1);
+    }
+    
+    private void adatokKitolt(Ember ember){
+        lblKorEredmeny.setText(ember.getKor()+" év");
+        lblMiotaEredmeny.setText(ember.getMunkToltEv()+" éve");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -133,6 +149,26 @@ public class DolgozokForm extends javax.swing.JFrame {
         lblLanyok.setText("Lányok");
 
         lblFiuk.setText("Fiúk");
+
+        cbFiuk.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                cbFiukPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+
+        cbLanyok.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                cbLanyokPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
 
         pnlOsszesito.setBorder(javax.swing.BorderFactory.createTitledBorder("Összesítő"));
 
@@ -245,6 +281,11 @@ public class DolgozokForm extends javax.swing.JFrame {
         chbMkNem.setText("Mindkettő nem");
 
         btnMent.setText("Ment");
+        btnMent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMentActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -304,6 +345,30 @@ public class DolgozokForm extends javax.swing.JFrame {
         String nem = rbLany.isSelected() ? Ember.LANY_NEM : Ember.FIU_NEM;
         osszesitoKitolt(nem);
     }//GEN-LAST:event_rbFiuItemStateChanged
+
+    private void cbLanyokPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cbLanyokPopupMenuWillBecomeInvisible
+        String nev = (String) cbLanyok.getSelectedItem();
+        int i=0;
+        while (!(emberek.get(i).getNev().equals(nev))) {
+            i++;
+        }
+        
+        adatokKitolt(emberek.get(i));
+        
+    }//GEN-LAST:event_cbLanyokPopupMenuWillBecomeInvisible
+
+    private void cbFiukPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cbFiukPopupMenuWillBecomeInvisible
+        String nev = (String) cbFiuk.getSelectedItem();
+        int i=0;
+        while (!(emberek.get(i).getNev().equals(nev))) {
+            i++;
+        }
+        
+        adatokKitolt(emberek.get(i));
+    }//GEN-LAST:event_cbFiukPopupMenuWillBecomeInvisible
+
+    private void btnMentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMentActionPerformed
+    }//GEN-LAST:event_btnMentActionPerformed
 
     /**
      * @param args the command line arguments
