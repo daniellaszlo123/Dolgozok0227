@@ -26,17 +26,181 @@ public class DolgozokForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        lblLanyok = new javax.swing.JLabel();
+        lblFiuk = new javax.swing.JLabel();
+        cbFiuk = new javax.swing.JComboBox<>();
+        cbLanyok = new javax.swing.JComboBox<>();
+        pnlOsszesito = new javax.swing.JPanel();
+        rbLany = new javax.swing.JRadioButton();
+        rbFiu = new javax.swing.JRadioButton();
+        lblLegidosebb = new javax.swing.JLabel();
+        lblOsszKor = new javax.swing.JLabel();
+        lbl6EveDolgozo = new javax.swing.JLabel();
+        lblLegidosebbEredmeny = new javax.swing.JLabel();
+        lblOsszKorEredmeny = new javax.swing.JLabel();
+        lbl6EveDolgozoEredmeny = new javax.swing.JLabel();
+        pnlAdatok = new javax.swing.JPanel();
+        lblKor = new javax.swing.JLabel();
+        lblMiotaDlgk = new javax.swing.JLabel();
+        lblKorEredmeny = new javax.swing.JLabel();
+        lblMiotaEredmeny = new javax.swing.JLabel();
+        chbMkNem = new javax.swing.JCheckBox();
+        btnMent = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Dolgozók");
+
+        lblLanyok.setText("Lányok");
+
+        lblFiuk.setText("Fiúk");
+
+        pnlOsszesito.setBorder(javax.swing.BorderFactory.createTitledBorder("Összesítő"));
+
+        buttonGroup1.add(rbLany);
+        rbLany.setText("lány");
+
+        buttonGroup1.add(rbFiu);
+        rbFiu.setText("fiú");
+
+        lblLegidosebb.setText("legidősebb:");
+
+        lblOsszKor.setText("összes kor:");
+
+        lbl6EveDolgozo.setText("6 éve dolgozó:");
+
+        javax.swing.GroupLayout pnlOsszesitoLayout = new javax.swing.GroupLayout(pnlOsszesito);
+        pnlOsszesito.setLayout(pnlOsszesitoLayout);
+        pnlOsszesitoLayout.setHorizontalGroup(
+            pnlOsszesitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOsszesitoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOsszesitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlOsszesitoLayout.createSequentialGroup()
+                        .addComponent(rbLany)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbFiu))
+                    .addGroup(pnlOsszesitoLayout.createSequentialGroup()
+                        .addComponent(lblLegidosebb)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblLegidosebbEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlOsszesitoLayout.createSequentialGroup()
+                        .addComponent(lblOsszKor)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblOsszKorEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlOsszesitoLayout.createSequentialGroup()
+                        .addComponent(lbl6EveDolgozo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl6EveDolgozoEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlOsszesitoLayout.setVerticalGroup(
+            pnlOsszesitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOsszesitoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOsszesitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbLany)
+                    .addComponent(rbFiu))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlOsszesitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblLegidosebb)
+                    .addComponent(lblLegidosebbEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlOsszesitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblOsszKor)
+                    .addComponent(lblOsszKorEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlOsszesitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbl6EveDolgozo)
+                    .addComponent(lbl6EveDolgozoEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pnlAdatok.setBorder(javax.swing.BorderFactory.createTitledBorder("Adatok"));
+
+        lblKor.setText("kor:");
+
+        lblMiotaDlgk.setText("mióta dolgozik:");
+
+        javax.swing.GroupLayout pnlAdatokLayout = new javax.swing.GroupLayout(pnlAdatok);
+        pnlAdatok.setLayout(pnlAdatokLayout);
+        pnlAdatokLayout.setHorizontalGroup(
+            pnlAdatokLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdatokLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlAdatokLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAdatokLayout.createSequentialGroup()
+                        .addComponent(lblKor)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblKorEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlAdatokLayout.createSequentialGroup()
+                        .addComponent(lblMiotaDlgk)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblMiotaEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+        pnlAdatokLayout.setVerticalGroup(
+            pnlAdatokLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdatokLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlAdatokLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblKor)
+                    .addComponent(lblKorEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlAdatokLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblMiotaDlgk)
+                    .addComponent(lblMiotaEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+
+        chbMkNem.setText("Mindkettő nem");
+
+        btnMent.setText("Ment");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblLanyok)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbLanyok, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlOsszesito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblFiuk)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbFiuk, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(pnlAdatok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnMent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(chbMkNem)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblLanyok)
+                    .addComponent(lblFiuk)
+                    .addComponent(cbFiuk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbLanyok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pnlAdatok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(chbMkNem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnMent))
+                    .addComponent(pnlOsszesito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -78,5 +242,26 @@ public class DolgozokForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMent;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cbFiuk;
+    private javax.swing.JComboBox<String> cbLanyok;
+    private javax.swing.JCheckBox chbMkNem;
+    private javax.swing.JLabel lbl6EveDolgozo;
+    private javax.swing.JLabel lbl6EveDolgozoEredmeny;
+    private javax.swing.JLabel lblFiuk;
+    private javax.swing.JLabel lblKor;
+    private javax.swing.JLabel lblKorEredmeny;
+    private javax.swing.JLabel lblLanyok;
+    private javax.swing.JLabel lblLegidosebb;
+    private javax.swing.JLabel lblLegidosebbEredmeny;
+    private javax.swing.JLabel lblMiotaDlgk;
+    private javax.swing.JLabel lblMiotaEredmeny;
+    private javax.swing.JLabel lblOsszKor;
+    private javax.swing.JLabel lblOsszKorEredmeny;
+    private javax.swing.JPanel pnlAdatok;
+    private javax.swing.JPanel pnlOsszesito;
+    private javax.swing.JRadioButton rbFiu;
+    private javax.swing.JRadioButton rbLany;
     // End of variables declaration//GEN-END:variables
 }
