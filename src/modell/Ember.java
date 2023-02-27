@@ -3,6 +3,9 @@ package modell;
 
 
 public class Ember {
+    public static final String LANY_NEM="L";
+    public static final String FIU_NEM="F";
+    
     private String nev;
     private int kor;
     private String nem;

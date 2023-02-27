@@ -4,17 +4,96 @@
  */
 package nezet;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modell.Ember;
+
 /**
  *
  * @author daniel.l.daniel
  */
 public class DolgozokForm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form DolgozokForm
-     */
-    public DolgozokForm() {
+    private ArrayList<Ember> emberek;
+    
+    
+    public DolgozokForm() throws IOException {
+        this.emberek = beolvas();
+        
         initComponents();
+    }
+    
+    private ArrayList<Ember> beolvas() throws IOException{
+        Path p = Paths.get("emberek.txt");
+        List<String> sorok=Files.readAllLines(p);
+        String fejlec = sorok.get(0);
+        sorok.remove(0);
+        
+        ArrayList<Ember> e =  new ArrayList<>();
+        
+        for (String sor : sorok) {
+            e.add(new Ember(sor, ";"));
+        }
+        
+        return e;
+    }
+    
+    private int legidosebb(String nem){
+        int maxKorIndex=0;
+        for (int i=0; i<emberek.size(); i++) {
+            if (emberek.get(i).getNem().equals(nem)) {
+                if (emberek.get(maxKorIndex).getKor()<emberek.get(i).getKor()) {
+                    maxKorIndex=i;
+                }
+            }
+        }
+        return emberek.get(maxKorIndex).getKor();
+    }
+    
+    private int osszKor(String nem){
+        int ossz=0;
+        for (Ember ember : emberek) {
+            if (ember.getNem().equals(nem)) {
+                ossz+=ember.getKor();
+            }
+        }
+        return ossz;
+    }
+    
+    private String hatEveDolgozo(String nem){
+        String txt;
+        int i=0;
+        while (i<emberek.size() && !(emberek.get(i).getMunkToltEv()>=6 && emberek.get(i).getNem().equals(nem))) {
+            i++;
+        }
+        
+        if (i<emberek.size()) {
+            txt=emberek.get(i).getNev();
+        }
+        else{
+            txt="nincs";
+        }
+        return txt;
+    }
+    
+    private void osszesitoKitolt(String nem){
+        lblLegidosebbEredmeny.setText(legidosebb(nem)+" éves");
+        lblOsszKorEredmeny.setText(osszKor(nem)+" év");
+        lbl6EveDolgozoEredmeny.setText(hatEveDolgozo(nem));
+    }
+    
+    private void lanyokCbFeltolt(){
+        for (Ember ember : emberek) {
+            if (ember.getNem().equals(Ember.LANY_NEM)) {
+                
+            }
+        }
     }
 
     /**
@@ -59,9 +138,19 @@ public class DolgozokForm extends javax.swing.JFrame {
 
         buttonGroup1.add(rbLany);
         rbLany.setText("lány");
+        rbLany.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rbLanyItemStateChanged(evt);
+            }
+        });
 
         buttonGroup1.add(rbFiu);
         rbFiu.setText("fiú");
+        rbFiu.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rbFiuItemStateChanged(evt);
+            }
+        });
 
         lblLegidosebb.setText("legidősebb:");
 
@@ -206,6 +295,16 @@ public class DolgozokForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void rbLanyItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rbLanyItemStateChanged
+        String nem = rbLany.isSelected() ? Ember.LANY_NEM : Ember.FIU_NEM;
+        osszesitoKitolt(nem);
+    }//GEN-LAST:event_rbLanyItemStateChanged
+
+    private void rbFiuItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rbFiuItemStateChanged
+        String nem = rbLany.isSelected() ? Ember.LANY_NEM : Ember.FIU_NEM;
+        osszesitoKitolt(nem);
+    }//GEN-LAST:event_rbFiuItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -236,7 +335,11 @@ public class DolgozokForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DolgozokForm().setVisible(true);
+                try {
+                    new DolgozokForm().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(DolgozokForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
