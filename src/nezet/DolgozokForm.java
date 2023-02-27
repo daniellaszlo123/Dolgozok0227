@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import modell.Ember;
 
 /**
@@ -22,10 +21,13 @@ import modell.Ember;
 public class DolgozokForm extends javax.swing.JFrame {
 
     private ArrayList<Ember> emberek;
-    
+    private String osszesito;
+    private String adatok;
     
     public DolgozokForm() throws IOException {
         this.emberek = beolvas();
+        this.osszesito="";
+        this.adatok="";
         initComponents();
         lanyokCbFeltolt();
         fiukCbFeltolt();
@@ -85,9 +87,18 @@ public class DolgozokForm extends javax.swing.JFrame {
     }
     
     private void osszesitoKitolt(String nem){
+        osszesito="";
         lblLegidosebbEredmeny.setText(legidosebb(nem)+" éves");
         lblOsszKorEredmeny.setText(osszKor(nem)+" év");
         lbl6EveDolgozoEredmeny.setText(hatEveDolgozo(nem));
+        
+        osszesito+=nem.equals(Ember.LANY_NEM) ? "Lányok:\n" : "Fiúk:\n";
+        osszesito+="legidősebb: ";
+        osszesito+=legidosebb(nem)+" éves\n";
+        osszesito+="összes kor: ";
+        osszesito+=osszKor(nem)+" év\n";
+        osszesito+="6 éve dolgozó: ";
+        osszesito+=hatEveDolgozo(nem);
     }
     
     private void lanyokCbFeltolt(){
@@ -109,8 +120,14 @@ public class DolgozokForm extends javax.swing.JFrame {
     }
     
     private void adatokKitolt(Ember ember){
+        adatok="";
         lblKorEredmeny.setText(ember.getKor()+" év");
         lblMiotaEredmeny.setText(ember.getMunkToltEv()+" éve");
+        adatok+=ember.getNev()+"\n";
+        adatok+="kor: ";
+        adatok+=ember.getKor()+" év\n";
+        adatok+="mióta dolgozik: ";
+        adatok+=ember.getMunkToltEv()+" éve";
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -368,6 +385,24 @@ public class DolgozokForm extends javax.swing.JFrame {
     }//GEN-LAST:event_cbFiukPopupMenuWillBecomeInvisible
 
     private void btnMentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMentActionPerformed
+        Path p = Paths.get("dolgozok.txt");
+        
+        String txt = osszesito;
+        
+            
+        if (chbMkNem.isSelected()) {
+            txt += "\n" + adatok;
+        }
+        
+        try {
+            if(Files.exists(p)){
+                Files.delete(p);
+            }
+            
+            Files.write(p, txt.getBytes());
+        } catch (IOException ex) {
+            Logger.getLogger(DolgozokForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnMentActionPerformed
 
     /**
